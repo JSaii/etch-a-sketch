@@ -1,0 +1,26 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid-container{
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vh;
+    border: solid 1px;
+}
+
+.row{
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+.cell{
+    flex-grow: 1;
+    border: 1px solid;
+}
