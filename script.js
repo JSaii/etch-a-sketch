@@ -1,5 +1,6 @@
 const gridContainer = document.getElementById("grid-container");
 const changeSizeBt = document.getElementById("change-size-bt")
+const changeGridVisibilityBt = document.getElementById("toggle-grid-bt")
 
 let leftMouseDown = false;
 
@@ -10,6 +11,18 @@ document.addEventListener("mouseup", e => {
   if (e.button === 0) leftMouseDown = false;
 });
 
+changeGridVisibilityBt.addEventListener("click", () => {
+    const cells = document.querySelectorAll(".cell");
+    const currentBorderColor = getComputedStyle(cells[0]).borderColor;
+
+    if(currentBorderColor !== "rgba(0, 0, 0, 0)"){
+        cells.forEach(cell => cell.style.borderColor = "rgb(0,0,0,0)");
+        console.log(currentBorderColor);
+    } else {
+        cells.forEach(cell => cell.style.borderColor = "rgb(0,0,0,0.2)");
+    }
+})
+
 changeSizeBt.addEventListener("click", () => {
     let newGridSize;
     while (true) {
@@ -17,7 +30,7 @@ changeSizeBt.addEventListener("click", () => {
         if (newGridSize === null) return;
         if (!newGridSize) continue;
         num = Number(newGridSize);
-        if (isNaN(num) || num < 10 || num > 100) continue;
+        if (isNaN(num) || num < 10 || num > 200) continue;
         break;
     }
     createGrid(newGridSize);
