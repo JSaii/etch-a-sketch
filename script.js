@@ -1,6 +1,15 @@
 const gridContainer = document.getElementById("grid-container");
 const changeSizeBt = document.getElementById("change-size-bt")
 
+let leftMouseDown = false;
+
+document.addEventListener("mousedown", e => {
+  if (e.button === 0) leftMouseDown = true;
+});
+document.addEventListener("mouseup", e => {
+  if (e.button === 0) leftMouseDown = false;
+});
+
 changeSizeBt.addEventListener("click", () => {
     let newGridSize;
     while (true) {
@@ -37,6 +46,7 @@ function createGrid(gridSize){
 
     cells.forEach(cell => {
         cell.addEventListener("mouseover", ()=>{
+            if (!leftMouseDown) return;
             let current_alpha = parseFloat(getComputedStyle(cell).backgroundColor.split(",")[3]);
             cell.style.backgroundColor = `rgb(0,0,0,${current_alpha + 0.1})`
 
